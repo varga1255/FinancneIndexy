@@ -1,0 +1,21 @@
+workflows:
+  android-build:
+    name: Android APK Build
+    environment:
+      flutter: stable
+    scripts:
+      - name: Vytvor chýbajúcu Android štruktúru
+        script: flutter create --project-name financne_indexy .
+
+      - name: Pridaj internet permission
+        script: |
+          sed -i 's|<application|<uses-permission android:name="android.permission.INTERNET"/>\n    <application|' android/app/src/main/AndroidManifest.xml
+
+      - name: Stiahni závislosti
+        script: flutter pub get
+
+      - name: Zostav APK
+        script: flutter build apk --release
+
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
