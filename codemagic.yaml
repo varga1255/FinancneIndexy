@@ -3,6 +3,7 @@ workflows:
     name: Android APK Build
     environment:
       flutter: stable
+    working_directory: financne_indexy
     scripts:
       - name: Vytvor chýbajúcu Android štruktúru
         script: flutter create --project-name financne_indexy .
@@ -18,4 +19,4 @@ workflows:
         script: flutter build apk --release
 
     artifacts:
-      - build/app/outputs/flutter-apk/app-release.apk
+      - financne_indexy/build/app/outputs/flutter-apk/app-release.apk
